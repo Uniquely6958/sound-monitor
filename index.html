@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#eef2e9">
+    <meta name="description" content="A simple live sound monitor with customizable sound and vibration alerts.">
+    <title>Roomtone — Sound monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Roomtone home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span>roomtone<span class="brand-period">.</span></span>
+        </a>
+        <div class="topbar-meta"><span class="privacy-dot"></span> Audio stays on this device</div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">AMBIENT SOUND / LIVE</p>
+            <h1 id="page-title">Room monitor<span class="title-period">.</span></h1>
+            <p class="intro-copy">A little more awareness of the room around you.</p>
+          </div>
+          <div class="session-chip" id="session-chip">
+            <span class="session-indicator" id="session-indicator"></span>
+            <span id="session-state">Not monitoring</span>
+          </div>
+        </section>
+
+        <div class="workspace">
+          <section class="monitor-panel" aria-labelledby="level-heading">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow eyebrow-light">INPUT LEVEL</p>
+                <h2 id="level-heading">Sound around you</h2>
+              </div>
+              <span class="input-label"><span class="mic-glyph" aria-hidden="true"></span> BUILT-IN MIC</span>
+            </div>
+
+            <div class="level-readout" aria-live="polite">
+              <span class="level-number" id="level-number">--</span>
+              <span class="level-unit">dBFS</span>
+              <span class="level-caption" id="level-caption">Start monitoring to see live levels</span>
+            </div>
+
+            <div class="meter-wrap" role="meter" aria-label="Live sound level" aria-valuemin="-60" aria-valuemax="0" aria-valuenow="-60" id="level-meter">
+              <div class="meter-track"><div class="meter-fill" id="meter-fill"></div><span class="threshold-marker" id="threshold-marker"></span></div>
+              <div class="meter-scale"><span>-60</span><span>-45</span><span>-30</span><span>-15</span><span>0 dBFS</span></div>
+            </div>
+
+            <div class="wavebox">
+              <div class="wavebox-label"><span>LIVE WAVEFORM</span><span id="wave-state">WAITING FOR INPUT</span></div>
+              <canvas id="waveform" aria-label="Live audio waveform"></canvas>
+            </div>
+
+            <div class="monitor-footer">
+              <button class="primary-button" id="monitor-button" type="button">
+                <span class="button-icon" id="button-icon" aria-hidden="true">▶</span>
+                <span id="button-label">Start monitoring</span>
+              </button>
+              <p class="monitor-hint" id="monitor-hint">Your browser will ask for microphone access.</p>
+            </div>
+          </section>
+
+          <aside class="settings-panel" aria-labelledby="settings-heading">
+            <div class="settings-heading">
+              <div>
+                <p class="eyebrow">SETTINGS</p>
+                <h2 id="settings-heading">Your alert</h2>
+              </div>
+              <span class="settings-symbol" aria-hidden="true">↗</span>
+            </div>
+
+            <div class="setting-block threshold-block">
+              <div class="setting-label-row">
+                <label for="threshold-input">Alert above</label>
+                <output class="threshold-value" id="threshold-value" for="threshold-input">−24 dBFS</output>
+              </div>
+              <input id="threshold-input" type="range" min="-60" max="0" step="1" value="-24">
+              <div class="range-labels"><span>Quieter</span><span>Louder</span></div>
+              <p class="setting-help">Relative microphone level, not calibrated sound-pressure dB.</p>
+            </div>
+
+            <div class="setting-block">
+              <p class="setting-label">Alert with</p>
+              <div class="mode-switch" role="group" aria-label="Alert type">
+                <button class="mode-button is-selected" type="button" data-mode="sound" aria-pressed="true"><span class="mode-icon" aria-hidden="true">♪</span> Sound</button>
+                <button class="mode-button" type="button" data-mode="vibration" aria-pressed="false"><span class="mode-icon" aria-hidden="true">▥</span> Vibration</button>
+                <button class="mode-button" type="button" data-mode="both" aria-pressed="false"><span class="mode-icon" aria-hidden="true">✳</span> Both</button>
+              </div>
+              <p class="setting-help" id="vibration-note">Vibration works on supported phones and browsers.</p>
+            </div>
+
+            <div class="alert-status" id="alert-status" aria-live="polite">
+              <span class="alert-status-icon" aria-hidden="true">!</span>
+              <span id="alert-status-text">Ready when you are</span>
+            </div>
+
+            <button class="test-button" id="test-button" type="button"><span aria-hidden="true">▷</span> Test alert</button>
+          </aside>
+        </div>
+
+        <footer class="page-footer">
+          <span>ROOMTONE / 01</span>
+          <span>Microphone access is only used while monitoring.</span>
+          <span id="monitor-time">SESSION 00:00</span>
+        </footer>
+        <p class="sr-only" id="announcement" aria-live="assertive"></p>
+      </main>
+    </div>
+  </body>
+</html>
