@@ -1,6 +1,6 @@
 # Roomtone
 
-A small browser-based sound monitor. It listens through the selected microphone, displays a live relative level, and alerts when sound crosses your chosen threshold.
+A small browser-based sound monitor. It listens through the selected microphone, displays the rolling average relative level, and alerts when that average reaches your chosen threshold. The alert window is configurable from 1 to 60 seconds and defaults to 5 seconds; the repeating alarm stops when the rolling average falls below the threshold.
 
 ## Use it
 

@@ -89,6 +89,14 @@
               <p class="setting-help">Relative microphone level, not calibrated sound-pressure dB.</p>
             </div>
 
+            <div class="setting-block duration-block">
+              <div class="setting-label-row">
+                <label for="duration-input">Alert after</label>
+                <div class="duration-control"><input id="duration-input" type="number" min="1" max="60" step="1" value="5"><span>sec</span></div>
+              </div>
+                <p class="setting-help">Alert when the average level over this period reaches your limit.</p>
+            </div>
+
             <div class="setting-block">
               <p class="setting-label">Alert with</p>
               <div class="mode-switch" role="group" aria-label="Alert type">
